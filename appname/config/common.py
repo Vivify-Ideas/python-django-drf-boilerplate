@@ -1,7 +1,6 @@
 import os
 from os.path import join
 from distutils.util import strtobool
-import dj_database_url
 from configurations import Configuration
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,7 +39,7 @@ class Common(Configuration):
 
     ALLOWED_HOSTS = ["*"]
     ROOT_URLCONF = 'appname.urls'
-    SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+    SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'local')
     WSGI_APPLICATION = 'appname.wsgi.application'
 
     # Email
@@ -52,10 +51,14 @@ class Common(Configuration):
 
     # Postgres
     DATABASES = {
-        'default': dj_database_url.config(
-            default='postgres://postgres:@postgres:5432/postgres',
-            conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
-        )
+        'default': {
+            'ENGINE': 'django.db.backends.mysql', 
+            'NAME': 'tttt',
+            'USER': 'root',
+            'PASSWORD': 'root',
+            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
+        }
     }
 
     # General
