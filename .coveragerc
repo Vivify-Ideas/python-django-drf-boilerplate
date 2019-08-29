@@ -8,3 +8,13 @@ omit = *migrations*,
        ./appname/config/*,
        ./appname/wsgi.py,
        *__init__*
+
+[report]
+omit = *migrations*,
+       *urls*,
+       *test*,
+       *admin*,
+       ./manage.py,
+       ./appname/config/*,
+       ./appname/wsgi.py,
+       *__init__*
