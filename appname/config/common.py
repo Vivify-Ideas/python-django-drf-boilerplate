@@ -21,6 +21,7 @@ class Common(Configuration):
         'rest_framework.authtoken',   # token authentication
         'django_filters',             # for filtering rest endpoints
         'django_rest_passwordreset',  # for reset password endpoints
+        'rest_framework_swagger',     # swagger api
 
         # Your apps
         'appname.users',

@@ -20,4 +20,8 @@ Run a command inside the docker container:
 docker-compose run --rm web [command]
 ```
 
+# API Docs
+
+API documentation is automatically generated using Swagger [here](http://localhost:8000/swagger)
+
 You're now ready to ROCK! ✨ 💅 🛳
