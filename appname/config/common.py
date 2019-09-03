@@ -25,6 +25,7 @@ class Common(Configuration):
 
         # Your apps
         'appname.users',
+        'appname.files',
 
     )
 
@@ -51,7 +52,7 @@ class Common(Configuration):
         ('Author', 'milos@vivifyideas.com'),
     )
 
-    # Postgres
+    # MySQL
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql', 

@@ -7,7 +7,6 @@ from ..serializers import CreateUserSerializer
 
 
 class TestCreateUserSerializer(TestCase):
-
     def setUp(self):
         self.user_data = model_to_dict(UserFactory.build())
 
