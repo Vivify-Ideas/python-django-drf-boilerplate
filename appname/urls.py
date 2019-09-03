@@ -31,7 +31,7 @@ urlpatterns = [
                               namespace='rest_framework')),
 
     # file upload
-    url(r'^file/upload/$', MyFileView.as_view(), name='file-upload'),
+    url(r'^api/v1/file/upload/$', MyFileView.as_view(), name='file-upload'),
 
     # swagger docs
     url(r'^swagger$', schema_view),

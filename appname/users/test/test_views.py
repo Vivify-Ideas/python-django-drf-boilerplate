@@ -54,35 +54,3 @@ class TestUserDetailTestCase(APITestCase):
 
         user = User.objects.get(pk=self.user.id)
         eq_(user.first_name, new_first_name)
-
-
-class TestUserSetPassword(APITestCase):
-    """
-    Tests /users/{id}/set_password endpoint
-    """
-    def setUp(self):
-        self.user = UserFactory(password='password')
-        self.url = reverse('user-set-password', kwargs={'pk': self.user.pk})
-        self.client.credentials(
-            HTTP_AUTHORIZATION=f'Token {self.user.auth_token}')
-
-    def test_incorect_old_password(self):
-        response = self.client.post(self.url, {
-            'old_password': 'asdf',
-            'new_password': 'asdf'
-        })
-        eq_(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    def test_without_new_password_provided(self):
-        response = self.client.post(self.url, {
-            'old_password': 'password',
-        })
-        eq_(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    def test_changing_password_succeeds(self):
-        response = self.client.post(self.url, {
-            'old_password': 'password',
-            'new_password': 'new',
-        })
-        eq_(response.status_code, status.HTTP_200_OK)
-        eq_(response.data, {'status': 'password set'})

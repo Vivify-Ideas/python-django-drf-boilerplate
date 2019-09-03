@@ -34,11 +34,3 @@ class CreateUserSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ('auth_token', )
         extra_kwargs = {'password': {'write_only': True}}
-
-
-class PasswordSerializer(serializers.Serializer):
-    """
-    Serializer for password change endpoint.
-    """
-    old_password = serializers.CharField(required=True)
-    new_password = serializers.CharField(required=True)
