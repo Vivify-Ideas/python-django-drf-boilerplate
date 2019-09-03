@@ -202,5 +202,13 @@ class Common(Configuration):
         'DEFAULT_AUTHENTICATION_CLASSES': (
             'rest_framework.authentication.SessionAuthentication',
             'rest_framework.authentication.TokenAuthentication',
-        )
+        ),
+        'DEFAULT_THROTTLE_CLASSES': [
+            'rest_framework.throttling.AnonRateThrottle',
+            'rest_framework.throttling.UserRateThrottle'
+        ],
+        'DEFAULT_THROTTLE_RATES': {
+            'anon': '100/second',
+            'user': '1000/second'
+        }
     }
