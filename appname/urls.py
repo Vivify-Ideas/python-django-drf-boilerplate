@@ -20,15 +20,15 @@ urlpatterns = [
     # admin panel
     path('admin/', admin.site.urls),
 
-    # api
-    path('api/v1/', include(router.urls)),
-    url(r'^api/v1/password_reset/',
-        include('django_rest_passwordreset.urls', namespace='password_reset')),
-
     # auth
     path('api-token-auth/', views.obtain_auth_token),
     path('api-auth/', include('rest_framework.urls',
                               namespace='rest_framework')),
+
+    # api
+    path('api/v1/', include(router.urls)),
+    url(r'^api/v1/password_reset/',
+        include('django_rest_passwordreset.urls', namespace='password_reset')),
 
     # file upload
     url(r'^api/v1/file/upload/$', MyFileView.as_view(), name='file-upload'),
