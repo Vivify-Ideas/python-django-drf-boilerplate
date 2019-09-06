@@ -20,6 +20,10 @@ django-rest-passwordreset==1.0.0
 django-rest-swagger==2.2.0
 django-versatileimagefield==1.10
 
+# Social login
+social-auth-core==3.2.0
+social-auth-app-django==3.1.0
+
 # Developer Tools
 ipdb==0.11
 ipython==7.2.0

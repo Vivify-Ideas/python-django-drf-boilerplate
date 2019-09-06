@@ -9,6 +9,7 @@ from rest_framework.authtoken import views
 from rest_framework_swagger.views import get_swagger_view
 from .users.views import UserViewSet, UserCreateViewSet
 from .files.views import MyFileView
+from .social.views import exchange_token
 
 schema_view = get_swagger_view(title='Pastebin API')
 
@@ -32,6 +33,10 @@ urlpatterns = [
 
     # file upload
     url(r'^api/v1/file/upload/$', MyFileView.as_view(), name='file-upload'),
+
+    # social login
+    url('', include('social_django.urls', namespace='social')),
+    url(r'^api/v1/social/(?P<backend>[^/]+)/$', exchange_token),
 
     # swagger docs
     url(r'^swagger$', schema_view),
