@@ -1,16 +1,16 @@
 from rest_framework import serializers
+from versatileimagefield.serializers import VersatileImageFieldSerializer
+
 from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    profile_picture = VersatileImageFieldSerializer(sizes='profile_picture')
+
     class Meta:
         model = User
-        fields = (
-            'id',
-            'username',
-            'first_name',
-            'last_name',
-        )
+        fields = ('id', 'username', 'first_name', 'last_name',
+                  'profile_picture')
         read_only_fields = ('username', )
 
 

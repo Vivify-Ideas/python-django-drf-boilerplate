@@ -6,11 +6,18 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.encoding import python_2_unicode_compatible
 from django.db.models.signals import post_save
 from rest_framework.authtoken.models import Token
+from versatileimagefield.fields import VersatileImageField, PPOIField
 
 
 @python_2_unicode_compatible
 class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    profile_picture = VersatileImageField('ProfilePicture',
+                                          upload_to='profile_pictures/',
+                                          ppoi_field='profile_picture_ppoi',
+                                          blank=True,
+                                          null=True)
+    profile_picture_ppoi = PPOIField()
 
     def __str__(self):
         return self.username

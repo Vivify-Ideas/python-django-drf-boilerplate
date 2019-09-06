@@ -22,6 +22,7 @@ class Common(Configuration):
         'django_filters',             # for filtering rest endpoints
         'django_rest_passwordreset',  # for reset password endpoints
         'rest_framework_swagger',     # swagger api
+        'versatileimagefield',        # image lib 
 
         # Your apps
         'appname.users',
@@ -187,6 +188,16 @@ class Common(Configuration):
 
     # Custom user app
     AUTH_USER_MODEL = 'users.User'
+
+    # Image manipulation lib
+    VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
+        'profile_picture': [
+            ('full_size', 'url'),
+            ('thumbnail', 'thumbnail__100x100'),
+            ('medium_square_crop', 'crop__400x400'),
+            ('small_square_crop', 'crop__50x50')
+        ]
+    }
 
     # Django Rest Framework
     REST_FRAMEWORK = {
