@@ -1,4 +1,7 @@
 import os
+import sentry_sdk
+
+from sentry_sdk.integrations.django import DjangoIntegration
 from os.path import join
 from distutils.util import strtobool
 from configurations import Configuration
@@ -53,6 +56,12 @@ class Common(Configuration):
 
     ADMINS = (
         ('Author', 'milos@vivifyideas.com'),
+    )
+
+    # Sentry
+    sentry_sdk.init(
+        dsn=os.getenv('SENTRY_DSN', ''),
+        integrations=[DjangoIntegration()]
     )
 
     # MySQL
