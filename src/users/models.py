@@ -10,7 +10,7 @@ from versatileimagefield.fields import VersatileImageField, PPOIField
 from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 
-from appname.common.helpers import EmailHelper
+from src.common.helpers import EmailHelper
 
 
 @receiver(reset_password_token_created)
@@ -45,7 +45,7 @@ class User(AbstractUser):
                                           ppoi_field='profile_picture_ppoi',
                                           blank=True,
                                           null=True)
-    profile_picture_ppoi = PPOIField()
+    profile_picture_ppoi = PPOIField(blank=True, null=True)
 
     def __str__(self):
         return self.username

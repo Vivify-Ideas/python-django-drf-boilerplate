@@ -1,5 +1,4 @@
 from django.urls import reverse
-from django.forms.models import model_to_dict
 from django.contrib.auth.hashers import check_password
 from nose.tools import ok_, eq_
 from rest_framework.test import APITestCase
@@ -17,7 +16,7 @@ class TestUserListTestCase(APITestCase):
     """
     def setUp(self):
         self.url = reverse('user-list')
-        self.user_data = model_to_dict(UserFactory.build())
+        self.user_data = {'username': 'test', 'password': 'test'}
 
     def test_post_request_with_no_data_fails(self):
         response = self.client.post(self.url, {})

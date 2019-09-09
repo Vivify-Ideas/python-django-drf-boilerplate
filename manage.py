@@ -4,7 +4,7 @@ import sys
 import dotenv
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "appname.config")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.config")
     os.environ.setdefault("DJANGO_CONFIGURATION", "Local")
 
     dotenv.read_dotenv()

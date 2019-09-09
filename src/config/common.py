@@ -31,10 +31,10 @@ class Common(Configuration):
         'social_django',              # social login
 
         # Your apps
-        'appname.users',
-        'appname.files',
-        'appname.social',
-        'appname.common',
+        'src.users',
+        'src.files',
+        'src.social',
+        'src.common',
 
     )
 
@@ -50,9 +50,9 @@ class Common(Configuration):
     )
 
     ALLOWED_HOSTS = ["*"]
-    ROOT_URLCONF = 'appname.urls'
+    ROOT_URLCONF = 'src.urls'
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'local')
-    WSGI_APPLICATION = 'appname.wsgi.application'
+    WSGI_APPLICATION = 'src.wsgi.application'
 
     # Email
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

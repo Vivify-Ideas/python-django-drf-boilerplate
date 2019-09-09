@@ -5,8 +5,8 @@ omit = *migrations*,
        *test*,
        *admin*,
        ./manage.py,
-       ./appname/config/*,
-       ./appname/wsgi.py,
+       ./src/config/*,
+       ./src/wsgi.py,
        *__init__*
 
 [report]
@@ -15,6 +15,6 @@ omit = *migrations*,
        *test*,
        *admin*,
        ./manage.py,
-       ./appname/config/*,
-       ./appname/wsgi.py,
+       ./src/config/*,
+       ./src/wsgi.py,
        *__init__*
