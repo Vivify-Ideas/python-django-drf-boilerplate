@@ -28,7 +28,6 @@ social-auth-app-django==3.1.0
 # Developer Tools
 ipdb==0.11
 ipython==7.2.0
-mkdocs==1.0.4
 flake8==3.7.5
 yapf==0.28.0
 sentry-sdk==0.11.2
