@@ -82,7 +82,3 @@ To run all tests with code-coverate report, simple run:
 ```
 
 You're now ready to ROCK! ✨ 💅 🛳
-
-```
-
-```
