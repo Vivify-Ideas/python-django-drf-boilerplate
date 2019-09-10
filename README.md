@@ -1,12 +1,37 @@
-# tttt
+# Python - Django Rest Framework boilerplate
 
-[![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Django_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
+This is boilerplate for starting fresh new DRF projects. It's built using [cookiecutter-django-rest](https://github.com/agconti/cookiecutter-django-rest).
 
-# Prerequisites
+## Highlights
 
-- [Docker](https://docs.docker.com/docker-for-mac/install/)
+- Modern Python development with Python 3.6+
+- Bleeding edge Django 2.1+
+- Fully dockerized, local development via docker-compose.
+- MySQL
+- Full test coverage, continuous integration, and continuous deployment.
 
-# Local Development
+### Features built-in
+
+- Token-based Auth system
+- Social (FB + G+) signup/sigin
+- API Throttling enabled
+- Password reset endpoints
+- User model with profile picture field using VesatileImage
+- Files manipulation (upload/delete)
+- Sentry setup
+- Swagger API docs out-of-the-box
+- CodeLinter (flake8) and CodeFormatter (yapf)
+- Tests (with mocking and factories) with code-coverage support
+
+## API Docs
+
+API documentation is automatically generated using Swagger. You can view documention by visiting this [link](http://localhost:8000/swagger).
+
+## Prerequisites
+
+If you are familiar with Docker, then you just need [Docker](https://docs.docker.com/docker-for-mac/install/). If you don't want to use Docker, then you just need Python3 and MySQL installed.
+
+## Local Development with Docker
 
 Start the dev server for local development:
 
@@ -20,8 +45,44 @@ Run a command inside the docker container:
 docker-compose run --rm web [command]
 ```
 
-# API Docs
+## Local Development without Docker
 
-API documentation is automatically generated using Swagger [here](http://localhost:8000/swagger)
+### Install
+
+```bash
+python3 -m venv env && source env/bin/activate  # activate venv
+cp .env.dist .env                               # create .env file and fill-in DB info
+pip install -r requirements.txt                 # install py requirements
+./manage.py migrate                             # run migrations
+./manage.py collectstatic --noinput             # collect static files
+```
+
+### Run dev server
+
+This will run server on [http://localhost:8000](http://localhost:8000)
+
+```bash
+./manage.py runserver
+```
+
+### Create superuser
+
+If you want, you can create initial super-user with next commad:
+
+```bash
+./manage.py createsuperuser
+```
+
+### Running Tests
+
+To run all tests with code-coverate report, simple run:
+
+```bash
+./manage.py test
+```
 
 You're now ready to ROCK! ✨ 💅 🛳
+
+```
+
+```
