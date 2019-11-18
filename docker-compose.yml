@@ -1,28 +1,34 @@
 version: '2'
 
 services:
-  postgres:
-    image: postgres:9.6
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+
   web:
+    build: .
     restart: always
     environment:
       - DJANGO_SECRET_KEY=local
-    image: web
-    build: ./
+      - DB_NAME=database
+      - DB_USER=user
+      - DB_PASSWORD=password
     command: >
-      bash -c "./manage.py migrate &&
-               ./manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - ./:/code
+      sh -c "./manage.py migrate &&
+             ./manage.py runserver 0.0.0.0:8000"
     ports:
       - '8000:8000'
     depends_on:
-      - postgres
-  documentation:
-    restart: always
-    build: ./
-    command: 'mkdocs serve'
+      - db
     volumes:
-      - ./:/code
-    ports:
-      - '8001:8001'
+      - ./:/app
+
+volumes:
+  db-data:
+

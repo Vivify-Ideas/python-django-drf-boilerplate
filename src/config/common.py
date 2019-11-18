@@ -58,7 +58,7 @@ class Common(Configuration):
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
     ADMINS = (
-        ('Author', 'milos@vivifyideas.com'),
+        ('Author', 'dev@vivifyideas.com'),
     )
 
     # Sentry
@@ -74,7 +74,7 @@ class Common(Configuration):
             'NAME': os.getenv('DB_NAME'),
             'USER': os.getenv('DB_USER'),
             'PASSWORD': os.getenv('DB_PASSWORD'),
-            'HOST': os.getenv('DB_HOST'),
+            'HOST': os.getenv('DB_HOST', 'db'),
             'PORT': os.getenv('DB_PORT'),
         }
     }
