@@ -1,9 +1,9 @@
 from rest_framework import viewsets, mixins
 from rest_framework.permissions import AllowAny
 
-from .models import User
-from .permissions import IsUserOrReadOnly
-from .serializers import CreateUserSerializer, UserSerializer
+from src.users.models import User
+from src.users.permissions import IsUserOrReadOnly
+from src.users.serializers import CreateUserSerializer, UserSerializer
 
 
 class UserViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,

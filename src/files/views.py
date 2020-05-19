@@ -3,7 +3,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
 
-from .serializers import MyFileSerializer
+from src.files.serializers import MyFileSerializer
 
 
 class MyFileView(APIView):

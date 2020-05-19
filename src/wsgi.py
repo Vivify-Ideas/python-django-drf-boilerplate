@@ -5,11 +5,11 @@ For more information on this file, see
 https://docs.djangoproject.com/en/2.0/howto/deployment/wsgi/gunicorn/
 """
 import os
+import dotenv
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.config")
-os.environ.setdefault("DJANGO_CONFIGURATION", "Stage")
+from django.core.wsgi import get_wsgi_application
 
-print(f'Using {os.environ.get("DJANGO_CONFIGURATION")} config')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.config.local")
+dotenv.read_dotenv()
 
-from configurations.wsgi import get_wsgi_application  # noqa
 application = get_wsgi_application()

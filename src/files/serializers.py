@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import MyFile
+
+from src.files.models import MyFile
 
 
 class MyFileSerializer(serializers.ModelSerializer):

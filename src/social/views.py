@@ -6,8 +6,16 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from requests.exceptions import HTTPError
 from social_django.utils import psa
+from django.shortcuts import redirect
 
 from .serializers import SocialSerializer
+
+
+@api_view(http_method_names=['GET'])
+@permission_classes([AllowAny])
+def complete_twitter_login(request, *args, **kwargs):
+    token = Token.objects.get(user=request.user).key
+    return redirect(settings.TWITTER_FE_URL + f'?token={token}')
 
 
 @api_view(http_method_names=['POST'])
@@ -40,8 +48,7 @@ def exchange_token(request, backend):
             # this line, plus the psa decorator above, are all that's necessary to
             # get and populate a user object for any properly enabled/configured backend
             # which python-social-auth can handle.
-            user = request.backend.do_auth(
-                serializer.validated_data['access_token'])
+            user = request.backend.do_auth(serializer.validated_data['access_token'])
         except HTTPError as e:
             # An HTTPError bubbled up from the request to the social auth provider.
             # This happens, at least in Google's case, every time you send a malformed
