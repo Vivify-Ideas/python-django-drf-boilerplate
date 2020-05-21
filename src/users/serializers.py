@@ -1,13 +1,12 @@
 from rest_framework import serializers
-from versatileimagefield.serializers import VersatileImageFieldSerializer
 
-from .models import User
-
+from src.users.models import User
+from src.common.serializers import ThumbnailerJSONSerializer
 
 class UserSerializer(serializers.ModelSerializer):
-    profile_picture = VersatileImageFieldSerializer(required=False,
-                                                    allow_null=True,
-                                                    sizes='profile_picture')
+    profile_picture = ThumbnailerJSONSerializer(required=False,
+                                                allow_null=True,
+                                                alias_target='src.users')
 
     class Meta:
         model = User
@@ -22,9 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
-    profile_picture = VersatileImageFieldSerializer(required=False,
-                                                    allow_null=True,
-                                                    sizes='profile_picture')
+    profile_picture = ThumbnailerJSONSerializer(required=False, allow_null=True, alias_target='src.users')
 
     def create(self, validated_data):
         # call create_user on user object. Without this

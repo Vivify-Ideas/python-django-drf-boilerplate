@@ -23,7 +23,8 @@ INSTALLED_APPS = (
     'django_filters',             # for filtering rest endpoints
     'django_rest_passwordreset',  # for reset password endpoints
     'drf_yasg',                   # swagger api
-    'versatileimagefield',        # image lib
+    'easy_thumbnails',            # image lib
+    'easy_thumbnails_rest',       # image lib
     'social_django',              # social login
     'corsheaders',                # cors handling
     'django_inlinecss',           # inline css in templates
@@ -269,14 +270,12 @@ SOCIAL_AUTH_TWITTER_PIPELINE = (
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/complete/twitter/'
 
-# Image manipulation lib
-VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
-    'profile_picture': [
-        ('full_size', 'url'),
-        ('thumbnail', 'thumbnail__100x100'),
-        ('medium_square_crop', 'crop__400x400'),
-        ('small_square_crop', 'crop__50x50')
-    ]
+THUMBNAIL_ALIASES = {
+    'src.users': {
+        'thumbnail': {'size': (100, 100), 'crop': True},
+        'medium_square_crop': {'size': (400, 400), 'crop': True},
+        'small_square_crop': {'size': (50, 50), 'crop': True}
+    },
 }
 
 # Django Rest Framework
