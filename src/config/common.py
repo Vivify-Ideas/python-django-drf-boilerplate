@@ -24,7 +24,6 @@ INSTALLED_APPS = (
     'django_rest_passwordreset',  # for reset password endpoints
     'drf_yasg',                   # swagger api
     'easy_thumbnails',            # image lib
-    'easy_thumbnails_rest',       # image lib
     'social_django',              # social login
     'corsheaders',                # cors handling
     'django_inlinecss',           # inline css in templates

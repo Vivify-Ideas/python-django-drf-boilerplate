@@ -22,7 +22,6 @@ drf-yasg==1.17.0
 django-filter==2.1.0
 django-cors-headers==3.2.0
 django-rest-passwordreset==1.1.0
-easy-thumbnails-rest==1.0.6
 django-rest-swagger==2.2.0
 easy-thumbnails==2.7
 django-auto-prefetching==0.1.8
