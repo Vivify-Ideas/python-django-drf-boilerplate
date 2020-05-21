@@ -23,7 +23,6 @@ class UserViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
         try:
             return Response(UserSerializer(self.request.user, context={'request': self.request}).data, status=status.HTTP_200_OK)
         except Exception as e:
-            print(e.__dict__)
             return Response({'error': 'Wrong auth token' + e}, status=status.HTTP_400_BAD_REQUEST)
 
 

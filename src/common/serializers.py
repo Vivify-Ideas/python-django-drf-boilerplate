@@ -27,4 +27,6 @@ class ThumbnailerJSONSerializer(ApiImageField):
         super(ThumbnailerJSONSerializer, self).__init__(**kwargs)
 
     def to_representation(self, instance):
-        return image_sizes(self.context['request'], instance, self.alias_target)
+        if instance:
+            return image_sizes(self.context['request'], instance, self.alias_target)
+        return None
