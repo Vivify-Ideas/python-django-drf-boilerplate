@@ -21,4 +21,3 @@ class UserAdmin(UserAdmin):
     }), (_('Important dates'), {
         'fields': ('last_login', 'date_joined')
     }))
-
