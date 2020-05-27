@@ -5,10 +5,11 @@ This is boilerplate for starting fresh new DRF projects. It's built using [cooki
 ## Highlights
 
 - Modern Python development with Python 3.6+
-- Bleeding edge Django 2.1+
+- Bleeding edge Django 3.0+
 - Fully dockerized, local development via docker-compose.
 - MySQL
 - Full test coverage, continuous integration, and continuous deployment.
+- Celery tasks
 
 ### Features built-in
 
@@ -16,7 +17,7 @@ This is boilerplate for starting fresh new DRF projects. It's built using [cooki
 - Social (FB + G+) signup/sigin
 - API Throttling enabled
 - Password reset endpoints
-- User model with profile picture field using VesatileImage
+- User model with profile picture field using Easy Thumbnails
 - Files manipulation (upload/delete)
 - Sentry setup
 - Swagger API docs out-of-the-box
@@ -50,11 +51,15 @@ docker-compose run --rm web [command]
 ### Install
 
 ```bash
-python3 -m venv env && source env/bin/activate  # activate venv
-cp .env.dist .env                               # create .env file and fill-in DB info
-pip install -r requirements.txt                 # install py requirements
-./manage.py migrate                             # run migrations
-./manage.py collectstatic --noinput             # collect static files
+python3 -m venv env && source env/bin/activate                # activate venv
+cp .env.dist .env                                             # create .env file and fill-in DB info
+pip install -r requirements.txt                               # install py requirements
+./manage.py migrate                                           # run migrations
+./manage.py collectstatic --noinput                           # collect static files
+redis-server                                                  # run redis locally for celery
+celery -A src.config worker --beat --loglevel=debug
+  --pidfile="./celerybeat.pid"
+  --scheduler django_celery_beat.schedulers:DatabaseScheduler # run celery beat and worker
 ```
 
 ### Run dev server
