@@ -6,20 +6,28 @@ from django.contrib import admin
 from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
-from rest_framework_swagger.views import get_swagger_view
-from .users.views import UserViewSet, UserCreateViewSet
-from .files.views import MyFileView
-from .social.views import exchange_token
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
-schema_view = get_swagger_view(title='Pastebin API')
+from src.files.views import MyFileView
+from src.social.views import exchange_token, complete_twitter_login
+from src.users.urls import usersRouter
+
+schema_view = get_schema_view(
+    openapi.Info(title="Pastebin API", default_version='v1'),
+    public=True,
+)
 
 router = DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'users', UserCreateViewSet)
+
+router.registry.extend(usersRouter.registry)
 
 urlpatterns = [
     # admin panel
     path('admin/', admin.site.urls),
+
+    # summernote editor
+    path('summernote/', include('django_summernote.urls')),
 
     # auth
     path('api-token-auth/', views.obtain_auth_token),
@@ -34,12 +42,16 @@ urlpatterns = [
     # file upload
     url(r'^api/v1/file/upload/$', MyFileView.as_view(), name='file-upload'),
 
+
     # social login
     url('', include('social_django.urls', namespace='social')),
+    url(r'^complete/twitter/', complete_twitter_login),
     url(r'^api/v1/social/(?P<backend>[^/]+)/$', exchange_token),
 
     # swagger docs
-    url(r'^swagger$', schema_view),
+    url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
     # the 'api-root' from django rest-frameworks default router
     re_path(

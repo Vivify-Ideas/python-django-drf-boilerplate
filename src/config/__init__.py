@@ -1,3 +1,4 @@
-from .local import Local  # noqa
-from .stage import Stage  # noqa
-from .production import Production  # noqa
+from __future__ import absolute_import, unicode_literals
+
+from .celery import app as celery_app
+__all__ = ('celery_app', )
