@@ -2,6 +2,8 @@ version: '3'
 services:
   db:
     image: mysql:5.7
+    ports:
+      - 3306:3306
     environment:
       MYSQL_DATABASE: database
       MYSQL_USER: user
@@ -46,6 +48,13 @@ services:
     restart: unless-stopped
     ports:
       - 6379:6379
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    restart: always
+    ports:
+      - 1025:1025
+      - 8025:8025
 
 volumes:
   db-data:

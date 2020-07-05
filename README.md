@@ -37,6 +37,7 @@ If you are familiar with Docker, then you just need [Docker](https://docs.docker
 Start the dev server for local development:
 
 ```bash
+cp .env.dist .env
 docker-compose up
 ```
 
@@ -85,5 +86,11 @@ To run all tests with code-coverate report, simple run:
 ```bash
 ./manage.py test
 ```
+
+### MySQL - privileges issue
+
+If you experience any problems with DB user privileges during migrations run query below:
+
+`GRANT ALL PRIVILEGES ON [mydb].* TO '[user]'@'localhost';`
 
 You're now ready to ROCK! ✨ 💅 🛳

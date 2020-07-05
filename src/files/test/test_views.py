@@ -1,11 +1,10 @@
-import mock
 from django.urls import reverse
 from nose.tools import eq_
 from rest_framework.test import APITestCase
 from rest_framework import status
 from faker import Faker
 from django.core.files import File
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 
 from src.users.test.factories import UserFactory
 
@@ -37,7 +36,7 @@ class TestFileUpload(APITestCase):
             self.url,
             {
                 'description': 'some desc',
-                'file': mock.MagicMock(spec=File),
+                'file': MagicMock(spec=File),
             },
             format='multipart'
         )

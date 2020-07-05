@@ -3,7 +3,6 @@ import sentry_sdk
 
 from sentry_sdk.integrations.django import DjangoIntegration
 from os.path import join
-from distutils.util import strtobool
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SITE_URL = os.getenv('SITE_URL', 'http://localhost:8000')
@@ -51,13 +50,20 @@ MIDDLEWARE = (
     'social_django.middleware.SocialAuthExceptionMiddleware',
 )
 
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '#p7&kxb7y^yq8ahfw5%$xh=f8=&1y*5+a5($8w_f7kw!-qig(j')
 ALLOWED_HOSTS = ["*"]
 ROOT_URLCONF = 'src.urls'
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'local')
 WSGI_APPLICATION = 'src.wsgi.application'
 
 # Email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
+EMAIL_PORT = os.getenv('EMAIL_PORT', 1025)
+
+# Celery
+BROKER_URL = os.getenv('BROKER_URL', 'redis://redis:6379')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'redis://redis:6379')
+
 
 ADMINS = (
     ('Author', 'dev@vivifyideas.com'),
@@ -135,7 +141,7 @@ TEMPLATES = [
 
 # Set DEBUG to False as a default for safety
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = strtobool(os.getenv('DJANGO_DEBUG', 'no'))
+DEBUG = os.getenv('DJANGO_DEBUG', False)
 
 # Password Validation
 # https://docs.djangoproject.com/en/2.0/topics/auth/passwords/#module-django.contrib.auth.password_validation
