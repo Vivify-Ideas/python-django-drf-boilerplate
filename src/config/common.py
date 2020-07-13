@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'django_inlinecss',           # inline css in templates
     'django_summernote',          # text editor
     'django_celery_beat',         # task scheduler
+    'channels',                   # websockets and more
 
     # Your apps
     'src.notifications',
@@ -58,6 +59,16 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '#p7&kxb7y^yq8ahfw5%$xh=f8=&1y*5+a5(
 ALLOWED_HOSTS = ["*"]
 ROOT_URLCONF = 'src.urls'
 WSGI_APPLICATION = 'src.wsgi.application'
+
+ASGI_APPLICATION = "src.consumers.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(os.getenv('REDIS_HOST', 'redis'), os.getenv('REDIS_PORT', 6379))],
+        },
+    },
+}
 
 # Email
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
