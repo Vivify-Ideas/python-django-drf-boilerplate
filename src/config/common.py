@@ -30,11 +30,15 @@ INSTALLED_APPS = (
     'django_celery_beat',         # task scheduler
 
     # Your apps
+    'src.notifications',
     'src.users',
     'src.files',
     'src.social',
     'src.common',
 
+    # Third party optional apps
+    # app must be placed somewhere after all the apps that are going to be generating activities
+    # 'actstream',                  # activity stream
 )
 
 # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
@@ -59,6 +63,7 @@ WSGI_APPLICATION = 'src.wsgi.application'
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
 EMAIL_PORT = os.getenv('EMAIL_PORT', 1025)
+EMAIL_FROM = os.getenv('EMAIL_FROM', 'noreply@somehost.local')
 
 # Celery
 BROKER_URL = os.getenv('BROKER_URL', 'redis://redis:6379')

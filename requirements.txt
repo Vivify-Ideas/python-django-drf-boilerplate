@@ -14,6 +14,7 @@ django-model-utils==4.0.0
 django_unique_upload==0.2.1
 django-summernote==0.8.11.6
 django-celery-beat==2.0.0
+django-activity-stream==0.9.0
 
 # Rest apis
 djangorestframework==3.11.0
