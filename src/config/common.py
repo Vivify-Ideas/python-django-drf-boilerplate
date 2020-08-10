@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'django_inlinecss',  # inline css in templates
     'django_summernote',  # text editor
     'django_celery_beat',  # task scheduler
+    'djmoney',  # money object
 
     # Your apps
     'src.notifications',
