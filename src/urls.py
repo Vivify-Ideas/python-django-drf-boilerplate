@@ -25,23 +25,21 @@ router.registry.extend(usersRouter.registry)
 urlpatterns = [
     # admin panel
     path('admin/', admin.site.urls),
+    url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
 
     # summernote editor
     path('summernote/', include('django_summernote.urls')),
 
     # auth
     path('api-token-auth/', views.obtain_auth_token),
-    path('api-auth/', include('rest_framework.urls',
-                              namespace='rest_framework')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # api
     path('api/v1/', include(router.urls)),
-    url(r'^api/v1/password_reset/',
-        include('django_rest_passwordreset.urls', namespace='password_reset')),
+    url(r'^api/v1/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
 
     # file upload
     url(r'^api/v1/file/upload/$', MyFileView.as_view(), name='file-upload'),
-
 
     # social login
     url('', include('social_django.urls', namespace='social')),
@@ -54,7 +52,5 @@ urlpatterns = [
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
     # the 'api-root' from django rest-frameworks default router
-    re_path(
-        r'^$',
-        RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
+    re_path(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

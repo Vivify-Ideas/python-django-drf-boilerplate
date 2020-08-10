@@ -8,26 +8,26 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_URL = os.getenv('SITE_URL', 'http://localhost:8000')
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'jet',
+    'django.contrib.admin',
 
     # Third party apps
-    'rest_framework',             # utilities for rest apis
-    'rest_framework.authtoken',   # token authentication
-    'django_filters',             # for filtering rest endpoints
+    'rest_framework',  # utilities for rest apis
+    'rest_framework.authtoken',  # token authentication
+    'django_filters',  # for filtering rest endpoints
     'django_rest_passwordreset',  # for reset password endpoints
-    'drf_yasg',                   # swagger api
-    'easy_thumbnails',            # image lib
-    'social_django',              # social login
-    'corsheaders',                # cors handling
-    'django_inlinecss',           # inline css in templates
-    'django_summernote',          # text editor
-    'django_celery_beat',         # task scheduler
+    'drf_yasg',  # swagger api
+    'easy_thumbnails',  # image lib
+    'social_django',  # social login
+    'corsheaders',  # cors handling
+    'django_inlinecss',  # inline css in templates
+    'django_summernote',  # text editor
+    'django_celery_beat',  # task scheduler
 
     # Your apps
     'src.notifications',
@@ -69,16 +69,10 @@ EMAIL_FROM = os.getenv('EMAIL_FROM', 'noreply@somehost.local')
 BROKER_URL = os.getenv('BROKER_URL', 'redis://redis:6379')
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'redis://redis:6379')
 
-
-ADMINS = (
-    ('Author', 'dev@vivifyideas.com'),
-)
+ADMINS = (('Author', 'dev@vivifyideas.com'), )
 
 # Sentry
-sentry_sdk.init(
-    dsn=os.getenv('SENTRY_DSN', ''),
-    integrations=[DjangoIntegration()]
-)
+sentry_sdk.init(dsn=os.getenv('SENTRY_DSN', ''), integrations=[DjangoIntegration()])
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
@@ -138,7 +132,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect'
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -282,9 +276,18 @@ SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/complete/twitter/'
 
 THUMBNAIL_ALIASES = {
     'src.users': {
-        'thumbnail': {'size': (100, 100), 'crop': True},
-        'medium_square_crop': {'size': (400, 400), 'crop': True},
-        'small_square_crop': {'size': (50, 50), 'crop': True}
+        'thumbnail': {
+            'size': (100, 100),
+            'crop': True
+        },
+        'medium_square_crop': {
+            'size': (400, 400),
+            'crop': True
+        },
+        'small_square_crop': {
+            'size': (50, 50),
+            'crop': True
+        }
     },
 }
 
