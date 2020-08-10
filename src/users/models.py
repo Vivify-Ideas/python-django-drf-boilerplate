@@ -16,8 +16,7 @@ from src.notifications.services import notify, ACTIVITY_USER_RESETS_PASS
 
 
 @receiver(reset_password_token_created)
-def password_reset_token_created(sender, instance, reset_password_token, *args,
-                                 **kwargs):
+def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
     """
     Handles password reset tokens
     When a token is created, an e-mail needs to be sent to the user
@@ -34,10 +33,7 @@ def password_reset_token_created(sender, instance, reset_password_token, *args,
 
 class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    profile_picture = ThumbnailerImageField('ProfilePicture',
-                                            upload_to='profile_pictures/',
-                                            blank=True,
-                                            null=True)
+    profile_picture = ThumbnailerImageField('ProfilePicture', upload_to='profile_pictures/', blank=True, null=True)
 
     def __str__(self):
         return self.username
