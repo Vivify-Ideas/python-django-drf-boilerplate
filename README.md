@@ -18,7 +18,6 @@ This is boilerplate for starting fresh new DRF projects. It's built using [cooki
 - API Throttling enabled
 - Password reset endpoints
 - User model with profile picture field using Easy Thumbnails
-- Files manipulation (upload/delete)
 - Sentry setup
 - Swagger API docs out-of-the-box
 - CodeLinter (flake8) and CodeFormatter (yapf)

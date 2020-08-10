@@ -9,7 +9,6 @@ from rest_framework.authtoken import views
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from src.files.views import MyFileView
 from src.social.views import exchange_token, complete_twitter_login
 from src.users.urls import usersRouter
 
@@ -37,9 +36,6 @@ urlpatterns = [
     # auth
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/v1/login/', views.obtain_auth_token),
-
-    # file upload
-    url(r'^api/v1/file/upload/$', MyFileView.as_view(), name='file-upload'),
 
     # social login
     url('', include('social_django.urls', namespace='social')),

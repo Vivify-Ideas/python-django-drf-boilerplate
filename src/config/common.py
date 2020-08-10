@@ -33,7 +33,6 @@ INSTALLED_APPS = (
     # Your apps
     'src.notifications',
     'src.users',
-    'src.files',
     'src.social',
     'src.common',
 
