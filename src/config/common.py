@@ -1,11 +1,14 @@
 import os
 import sentry_sdk
+import sys
 
 from sentry_sdk.integrations.django import DjangoIntegration
 from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SITE_URL = os.getenv('SITE_URL', 'http://localhost:8000')
+
+TESTING = sys.argv[1:2] == ['test']
 
 INSTALLED_APPS = (
     'django.contrib.auth',
