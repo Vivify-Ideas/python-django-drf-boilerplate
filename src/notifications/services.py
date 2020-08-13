@@ -12,23 +12,17 @@ NOTIFICATIONS = {
         'email': {
             'email_subject': 'Password Reset',
             'email_html_template': 'emails/user_reset_password.html',
-            'email_plaintext_template': 'emails/user_reset_password.txt'
         }
     }
 }
 
+
 def _send_email(email_notification_config, context, to):
     email_html_template = email_notification_config.get('email_html_template')
-    email_plaintext_template = email_notification_config.get('email_plaintext_template')
     email_subject = email_notification_config.get('email_subject')
 
-    EmailChannel.send(
-        context=context,
-        html_template=email_html_template,
-        plaintext_template=email_plaintext_template,
-        subject=email_subject,
-        to=to
-    )
+    EmailChannel.send(context=context, html_template=email_html_template, subject=email_subject, to=to)
+
 
 def notify(verb, **kwargs):
     notification_config = NOTIFICATIONS.get(verb)
@@ -42,6 +36,7 @@ def notify(verb, **kwargs):
             logger.debug('Please provide list of emails (email_to argument).')
 
         _send_email(email_notification_config, context, email_to)
+
 
 # Use only with actstream activated
 def send_action(sender, verb, action_object, target, **kwargs):

@@ -10,8 +10,7 @@ class TestEmailChannel(TestCase):
 
     def test_raise_exception_when_template_does_not_exist(self):
         with self.assertRaises(TemplateDoesNotExist):
-            EmailChannel.send({}, 'template_does_not_exist', 'template_does_not_exist', self.subject, self.to)
+            EmailChannel.send({}, 'template_does_not_exist', self.subject, self.to)
 
     def test_send_mail(self):
-        assert EmailChannel.send({}, 'emails/user_reset_password.html', 'emails/user_reset_password.txt',
-                                 self.subject, self.to) == 1
+        assert EmailChannel.send({}, 'emails/user_reset_password.html', self.subject, self.to) == 1
