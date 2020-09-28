@@ -72,7 +72,7 @@ EMAIL_FROM = os.getenv('EMAIL_FROM', 'noreply@somehost.local')
 BROKER_URL = os.getenv('BROKER_URL', 'redis://redis:6379')
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'redis://redis:6379')
 
-ADMINS = (('Author', 'dev@vivifyideas.com'), )
+ADMINS = ()
 
 # Sentry
 sentry_sdk.init(dsn=os.getenv('SENTRY_DSN', ''), integrations=[DjangoIntegration()])
