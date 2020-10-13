@@ -12,6 +12,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - db-data:/var/lib/mysql
+      - ./mysql/override.cnf:/etc/mysql/conf.d/override.cnf
 
   static:
     image: nginx:alpine
