@@ -32,6 +32,12 @@ INSTALLED_APPS = (
     'django_summernote',  # text editor
     'django_celery_beat',  # task scheduler
     'djmoney',  # money object
+    'health_check',
+    'health_check.db',                          # stock Django health checkers
+    'health_check.cache',
+    'health_check.storage',
+    'health_check.contrib.migrations',
+    'health_check.contrib.celery_ping',         # requires celery
 
     # Your apps
     'src.notifications',
