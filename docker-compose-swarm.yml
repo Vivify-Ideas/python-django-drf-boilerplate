@@ -15,14 +15,13 @@ services:
       - ./mysql/override.cnf:/etc/mysql/conf.d/override.cnf
 
   static:
-    image: nginx:alpine
+    image: static-image
     deploy:
       restart_policy:
         condition: any
     ports:
       - 8000:80
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - static-files:/app/static
 
   manage:
@@ -49,8 +48,6 @@ services:
     command: sh /entrypoint-web.sh
     ports:
       - 8001:8000
-    depends_on:
-      - db
     volumes:
       - ./.env:/app/src/.env
       - static-files:/app/static
