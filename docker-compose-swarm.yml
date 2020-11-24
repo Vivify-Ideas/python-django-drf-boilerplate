@@ -33,7 +33,6 @@ services:
     entrypoint: /entrypoint-manage.sh
     volumes:
       - ./.env:/app/.env
-      - ./.env:/app/src/.env
       - static-files:/app/static
       - media-files:/app/media
 
@@ -61,7 +60,6 @@ services:
     command: sh /entrypoint-queue.sh
     volumes:
       - ./.env:/app/.env
-      - ./.env:/app/src/.env
       - static-files:/app/static
 
   beat:
@@ -73,7 +71,6 @@ services:
     command: sh /entrypoint-beat.sh
     volumes:
       - ./.env:/app/.env
-      - ./.env:/app/src/.env
       - static-files:/app/static
 
 volumes:

@@ -1,14 +1,22 @@
 import os
 import sentry_sdk
 import sys
+import dotenv
 
 from sentry_sdk.integrations.django import DjangoIntegration
 from os.path import join
+
+TESTING = sys.argv[1:2] == ['test']
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+if not TESTING:
+    dotenv.read_dotenv(ROOT_DIR)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SITE_URL = os.getenv('SITE_URL', 'http://localhost:8000')
 
-TESTING = sys.argv[1:2] == ['test']
 
 INSTALLED_APPS = (
     'django.contrib.auth',

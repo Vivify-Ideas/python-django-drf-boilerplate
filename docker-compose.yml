@@ -16,11 +16,10 @@ services:
     build: .
     restart: always
     ports:
-      - 8000:8000
+      - 8001:8000
     env_file: .env
     command: 'sh -c "./manage.py migrate && ./manage.py runserver 0.0.0.0:8000"'
     volumes:
-      - ./.env:/app/src/.env
       - ./:/app
     depends_on:
       - db
@@ -31,7 +30,6 @@ services:
     env_file: .env
     command: sh /entrypoint-queue.sh
     volumes:
-      - ./.env:/app/src/.env
       - ./:/app
 
   beat:
@@ -40,7 +38,6 @@ services:
     env_file: .env
     command: sh /entrypoint-beat.sh
     volumes:
-      - ./.env:/app/src/.env
       - ./:/app
 
   redis:
