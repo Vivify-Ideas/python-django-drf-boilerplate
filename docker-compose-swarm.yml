@@ -25,21 +25,57 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - static-files:/app/static
 
+  manage:
+    image: test
+    deploy:
+      restart_policy:
+        condition: none
+    env_file: .env
+    entrypoint: /entrypoint-manage.sh
+    volumes:
+      - ./.env:/app/.env
+      - ./.env:/app/src/.env
+      - static-files:/app/static
+      - media-files:/app/media
+
   web:
     image: test
-    restart: unless-stopped
-    environment:
-      DB_PASSWORD: password
-      DJANGO_SECRET_KEY: SecretString
-      DJANGO_CONFIGURATION: Stage
-      SITE_URL: http://127.0.0.1:8001
-      FACEBOOK_KEY:
-      FACEBOOK_SECRET:
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: any
+    env_file: .env
+    command: sh /entrypoint-web.sh
     ports:
       - 8001:8000
     depends_on:
       - db
     volumes:
+      - ./.env:/app/src/.env
+      - static-files:/app/static
+
+  queue:
+    image: test
+    deploy:
+      restart_policy:
+        condition: any
+    env_file: .env
+    command: sh /entrypoint-queue.sh
+    volumes:
+      - ./.env:/app/.env
+      - ./.env:/app/src/.env
+      - static-files:/app/static
+
+  beat:
+    image: test
+    deploy:
+      restart_policy:
+        condition: any
+    env_file: .env
+    command: sh /entrypoint-beat.sh
+    volumes:
+      - ./.env:/app/.env
       - ./.env:/app/src/.env
       - static-files:/app/static
 
