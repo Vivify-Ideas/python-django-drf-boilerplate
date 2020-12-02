@@ -137,6 +137,10 @@ STATICFILES_FINDERS = (
 MEDIA_ROOT = join(os.path.dirname(BASE_DIR), 'media')
 MEDIA_URL = '/media/'
 
+# Headers
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
