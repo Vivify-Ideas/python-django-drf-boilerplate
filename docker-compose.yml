@@ -13,7 +13,10 @@ services:
       - db-data:/var/lib/mysql
 
   web:
-    build: .
+    build:
+      context: .
+      args:
+        REQUIREMENTS_FILE: dev.txt
     restart: always
     ports:
       - 8001:8000
@@ -25,7 +28,10 @@ services:
       - db
 
   queue:
-    build: .
+    build:
+      context: .
+      args:
+        REQUIREMENTS_FILE: dev.txt
     restart: unless-stopped
     env_file: .env
     command: sh /entrypoint-queue.sh
@@ -33,7 +39,10 @@ services:
       - ./:/app
 
   beat:
-    build: .
+    build:
+      context: .
+      args:
+        REQUIREMENTS_FILE: dev.txt
     restart: unless-stopped
     env_file: .env
     command: sh /entrypoint-beat.sh

@@ -1,5 +1,7 @@
 FROM python:3.6
 
+ARG REQUIREMENTS_FILE
+
 WORKDIR /app
 EXPOSE 80
 ENV PYTHONUNBUFFERED 1
@@ -15,8 +17,8 @@ RUN set -x && \
 CMD ["sh", "/entrypoint-web.sh"]
 COPY ./docker/ /
 
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
+COPY ./requirements/ ./requirements
+RUN pip install -r ./requirements/${REQUIREMENTS_FILE}
 
 COPY . ./
 

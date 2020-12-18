@@ -32,7 +32,7 @@ jobs:
         run: |
           sudo apt-get purge python-pip
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements/dev.txt
       - name: Run Tests
         run: python manage.py test
         env:
