@@ -29,3 +29,6 @@ AWS_HEADERS = {
 
 # Social
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
+# easy thumbnails lib & S3
+THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
