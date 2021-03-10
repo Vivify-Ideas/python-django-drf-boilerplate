@@ -37,9 +37,11 @@ class TestUserDetailTestCase(APITestCase):
     """
     def setUp(self):
         self.user = UserFactory()
+        tokens = self.user.get_tokens()
+        access_token = tokens['access']
         self.url = reverse('user-detail', kwargs={'pk': self.user.pk})
         self.client.credentials(
-            HTTP_AUTHORIZATION=f'Token {self.user.auth_token}')
+            HTTP_AUTHORIZATION=f'Bearer {access_token}')
 
     def test_get_request_returns_a_given_user(self):
         response = self.client.get(self.url)

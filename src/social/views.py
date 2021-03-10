@@ -1,6 +1,5 @@
 from django.conf import settings
 from rest_framework import status
-from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -14,8 +13,10 @@ from .serializers import SocialSerializer
 @api_view(http_method_names=['GET'])
 @permission_classes([AllowAny])
 def complete_twitter_login(request, *args, **kwargs):
-    token = Token.objects.get(user=request.user).key
-    return redirect(settings.TWITTER_FE_URL + f'?token={token}')
+    tokens = request.user.get_tokens()
+    access_token = tokens['access']
+    refresh_token = tokens['refresh']
+    return redirect(settings.TWITTER_FE_URL + f'?access_token={access_token}&refresh_token={refresh_token}')
 
 
 @api_view(http_method_names=['POST'])
@@ -63,8 +64,8 @@ def exchange_token(request, backend):
 
         if user:
             if user.is_active:
-                token, _ = Token.objects.get_or_create(user=user)
-                return Response({'token': token.key})
+                tokens = user.get_tokens()
+                return Response(tokens)
             else:
                 # user is not active; at some point they deleted their account,
                 # or were banned by a superuser. They can't just log in with their

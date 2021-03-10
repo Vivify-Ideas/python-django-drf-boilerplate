@@ -22,6 +22,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CreateUserSerializer(serializers.ModelSerializer):
     profile_picture = ThumbnailerJSONSerializer(required=False, allow_null=True, alias_target='src.users')
+    tokens = serializers.SerializerMethodField()
+
+    def get_tokens(self, user):
+        return user.get_tokens()
 
     def create(self, validated_data):
         # call create_user on user object. Without this
@@ -38,8 +42,8 @@ class CreateUserSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'email',
-            'auth_token',
+            'tokens',
             'profile_picture',
         )
-        read_only_fields = ('auth_token', )
+        read_only_fields = ('tokens', )
         extra_kwargs = {'password': {'write_only': True}}
