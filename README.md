@@ -4,8 +4,8 @@ This is boilerplate for starting fresh new DRF projects. It's built using [cooki
 
 ## Highlights
 
-- Modern Python development with Python 3.6+
-- Bleeding edge Django 3.0+
+- Modern Python development with Python 3.8+
+- Bleeding edge Django 3.1+
 - Fully dockerized, local development via docker-compose.
 - MySQL
 - Full test coverage, continuous integration, and continuous deployment.
@@ -13,7 +13,7 @@ This is boilerplate for starting fresh new DRF projects. It's built using [cooki
 
 ### Features built-in
 
-- Token-based Auth system
+- JSON Web Token authentication using [Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
 - Social (FB + G+) signup/sigin
 - API Throttling enabled
 - Password reset endpoints
