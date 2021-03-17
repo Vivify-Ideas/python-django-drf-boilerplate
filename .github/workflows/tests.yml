@@ -20,17 +20,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Set up Python 3.7
+      - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
-          python-version: 3.7
+          python-version: 3.8
       - name: Install libmysqlclient
         run: |
           sudo apt-get update
           sudo apt-get install libmysqlclient-dev
       - name: Install dependencies
         run: |
-          sudo apt-get purge python-pip
           python -m pip install --upgrade pip
           pip install -r requirements/dev.txt
       - name: Run Tests

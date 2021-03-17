@@ -2,6 +2,6 @@ from rest_framework.routers import SimpleRouter
 
 from src.users.views import UserViewSet
 
-usersRouter = SimpleRouter()
+users_router = SimpleRouter()
 
-usersRouter.register(r'users', UserViewSet)
+users_router.register(r'users', UserViewSet)

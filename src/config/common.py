@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'src.notifications',
     'src.users',
     'src.social',
+    'src.files',
     'src.common',
 
     # Third party optional apps
