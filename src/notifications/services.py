@@ -2,19 +2,9 @@ import logging
 from actstream import action
 
 from src.notifications.channels.email import EmailChannel
+from src.notifications.notifications import NOTIFICATIONS
 
 logger = logging.getLogger(__name__)
-
-ACTIVITY_USER_RESETS_PASS = 'started password reset process'
-
-NOTIFICATIONS = {
-    ACTIVITY_USER_RESETS_PASS: {
-        'email': {
-            'email_subject': 'Password Reset',
-            'email_html_template': 'emails/user_reset_password.html',
-        }
-    }
-}
 
 
 def _send_email(email_notification_config, context, to):

@@ -4,6 +4,7 @@
 ipdb==0.13.3
 flake8==3.8.3
 yapf==0.30.0
+django-extensions==3.1.1
 
 # Testing
 factory-boy==2.12.0
