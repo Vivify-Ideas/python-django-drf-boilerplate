@@ -83,6 +83,8 @@ EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.Email
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
 EMAIL_PORT = os.getenv('EMAIL_PORT', 1025)
 EMAIL_FROM = os.getenv('EMAIL_FROM', 'noreply@somehost.local')
+# the lifespan of the email link - verify account token (in seconds)
+EMAIL_TOKEN_LIFE = os.getenv('EMAIL_TOKEN_LIFE', 60 * 60)
 
 # Celery
 BROKER_URL = os.getenv('BROKER_URL', 'redis://redis:6379')
