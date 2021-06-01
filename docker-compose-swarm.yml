@@ -1,18 +1,17 @@
 version: '3'
 services:
   db:
-    image: mysql:5.7
+    image: postgres:13.3
     deploy:
       restart_policy:
         condition: any
     environment:
-      MYSQL_DATABASE: database
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: root
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: /data/postgres
     volumes:
-      - db-data:/var/lib/mysql
-      - ./mysql/override.cnf:/etc/mysql/conf.d/override.cnf
+      - db-data:/data/postgres
 
   static:
     image: static-image

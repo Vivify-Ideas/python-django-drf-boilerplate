@@ -102,10 +102,10 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
-# MySQL
+# Postgres
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
@@ -394,3 +394,5 @@ SUMMERNOTE_CONFIG = {
         ]
     }
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

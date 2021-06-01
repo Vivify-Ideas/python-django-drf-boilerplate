@@ -1,16 +1,16 @@
 version: '3'
 services:
   db:
-    image: mysql:5.7
+    image: postgres:13.3
     ports:
-      - 3306:3306
+      - 5432:5432
     environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: /data/postgres
     volumes:
-      - db-data:/var/lib/mysql
+      - db-data:/data/postgres
 
   web:
     build:

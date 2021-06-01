@@ -7,27 +7,22 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      mysql:
-        image: mysql:5.7
+      db:
+        image: postgres:13.3
         env:
-          MYSQL_DATABASE: db
-          MYSQL_USER: admin
-          MYSQL_PASSWORD: admin
-          MYSQL_ROOT_PASSWORD: root
+          POSTGRES_DB: db
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
         ports:
-          - 3360:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          - 5432:5432
+        options: --health-cmd="pg_isready -U postgres" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Set up Python 3.8
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name: Install libmysqlclient
-        run: |
-          sudo apt-get update
-          sudo apt-get install libmysqlclient-dev
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -36,7 +31,7 @@ jobs:
         run: python manage.py test
         env:
           DB_NAME: db
-          DB_USER: root
-          DB_PASSWORD: root
+          DB_USER: admin
+          DB_PASSWORD: admin
           DB_HOST: 127.0.0.1
-          DB_PORT: 3360
+          DB_PORT: 5432
