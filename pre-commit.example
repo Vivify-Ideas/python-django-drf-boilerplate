@@ -1,0 +1,9 @@
+cd $(git rev-parse --show-toplevel)
+
+NAME=$(basename `git rev-parse --show-toplevel`)_web_1
+docker ps -a | grep $NAME &> /dev/null
+CONTAINER_EXISTS=$?
+
+if [[ CONTAINER_EXISTS -eq 0 ]]; then
+    docker exec $NAME pre-commit run --all-files
+fi

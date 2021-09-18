@@ -1,9 +1,9 @@
 {
   "python.pythonPath": "env/bin/python3",
   "python.linting.pylintEnabled": false,
-  "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
-  "python.formatting.provider": "yapf",
+  "python.linting.cwd": "src",
+  "python.formatting.provider": "black",
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,

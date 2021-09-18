@@ -14,6 +14,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='profile_picture',
-            field=easy_thumbnails.fields.ThumbnailerImageField(blank=True, null=True, upload_to='profile_pictures/', verbose_name='ProfilePicture'), # noqa
+            field=easy_thumbnails.fields.ThumbnailerImageField(
+                blank=True, null=True, upload_to='profile_pictures/', verbose_name='ProfilePicture'
+            ),  # noqa
         ),
     ]

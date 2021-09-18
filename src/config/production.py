@@ -1,11 +1,14 @@
 import os
-from .common import * # noqa
+from .common import *  # noqa
 
 
 # Site
 # https://docs.djangoproject.com/en/2.0/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["*"]
-INSTALLED_APPS += ("gunicorn", "storages",) # noqa
+INSTALLED_APPS += (
+    "gunicorn",
+    "storages",
+)  # noqa
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/

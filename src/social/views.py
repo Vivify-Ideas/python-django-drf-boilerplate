@@ -55,10 +55,12 @@ def exchange_token(request, backend):
             # This happens, at least in Google's case, every time you send a malformed
             # or incorrect access key.
             return Response(
-                {'errors': {
-                    'token': 'Invalid token',
-                    'detail': str(e),
-                }},
+                {
+                    'errors': {
+                        'token': 'Invalid token',
+                        'detail': str(e),
+                    }
+                },
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -72,9 +74,7 @@ def exchange_token(request, backend):
                 # normal credentials anymore, so they can't log in with social
                 # credentials either.
                 return Response(
-                    {'errors': {
-                        nfe: 'This user account is inactive'
-                    }},
+                    {'errors': {nfe: 'This user account is inactive'}},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
         else:
@@ -82,8 +82,6 @@ def exchange_token(request, backend):
             # generated as to why specifically the authentication failed;
             # this makes it tough to debug except by examining the server logs.
             return Response(
-                {'errors': {
-                    nfe: "Authentication Failed"
-                }},
+                {'errors': {nfe: "Authentication Failed"}},
                 status=status.HTTP_400_BAD_REQUEST,
             )

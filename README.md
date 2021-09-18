@@ -1,4 +1,6 @@
-# Python - Django Rest Framework boilerplate
+# Django Rest Framework boilerplate
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 This is boilerplate for starting fresh new DRF projects. It's built using [cookiecutter-django-rest](https://github.com/agconti/cookiecutter-django-rest).
 
@@ -21,7 +23,7 @@ This is boilerplate for starting fresh new DRF projects. It's built using [cooki
 - Files management (thumbnails generated automatically for images)
 - Sentry setup
 - Swagger API docs out-of-the-box
-- CodeLinter (flake8) and CodeFormatter (yapf)
+- Code formatter [black](https://black.readthedocs.io/en/stable/)
 - Tests (with mocking and factories) with code-coverage support
 
 ## API Docs

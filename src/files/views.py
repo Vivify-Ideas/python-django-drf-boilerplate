@@ -14,19 +14,19 @@ class FilesViewset(mixins.CreateModelMixin, viewsets.GenericViewSet):
     parser_classes = (MultiPartParser, FormParser)
     queryset = File.objects.all()
     serializer_class = FileSerializer
-    permissions = {'default': (IsAuthenticated, )}
+    permissions = {'default': (IsAuthenticated,)}
 
     def create(self, request, *args, **kwargs):
         """
-            Create a MyModel
-            ---
-            parameters:
-                - name: file
-                  description: file
-                  required: True
-                  type: file
-            responseMessages:
-                - code: 201
-                  message: Created
+        Create a MyModel
+        ---
+        parameters:
+            - name: file
+              description: file
+              required: True
+              type: file
+        responseMessages:
+            - code: 201
+              message: Created
         """
         return super().create(request, *args, **kwargs)
