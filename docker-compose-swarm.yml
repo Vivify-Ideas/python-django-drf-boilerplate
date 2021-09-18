@@ -75,4 +75,3 @@ services:
 volumes:
   db-data:
   static-files:
-

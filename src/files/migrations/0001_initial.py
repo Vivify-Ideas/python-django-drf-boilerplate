@@ -21,10 +21,12 @@ class Migration(migrations.Migration):
                 ('file', models.FileField(upload_to='')),
                 ('thumbnail', models.ImageField(blank=True, null=True, upload_to='')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('author',
-                 models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING,
-                                   related_name='files',
-                                   to=settings.AUTH_USER_MODEL)),
+                (
+                    'author',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING, related_name='files', to=settings.AUTH_USER_MODEL
+                    ),
+                ),
             ],
         ),
     ]

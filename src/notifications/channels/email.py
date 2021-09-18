@@ -17,10 +17,11 @@ class EmailChannel:
                 email_html_message,
                 settings.EMAIL_FROM,
                 to,
-                alternatives=((email_html_message, 'text/html'), ),
+                alternatives=((email_html_message, 'text/html'),),
             )
             return msg.send()
 
         from src.common.tasks import send_email_task
+
         send_email_task.delay(subject, to, settings.EMAIL_FROM, email_html_message)
         return

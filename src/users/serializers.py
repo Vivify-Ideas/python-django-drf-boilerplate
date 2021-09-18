@@ -3,10 +3,9 @@ from rest_framework import serializers
 from src.users.models import User
 from src.common.serializers import ThumbnailerJSONSerializer
 
+
 class UserSerializer(serializers.ModelSerializer):
-    profile_picture = ThumbnailerJSONSerializer(required=False,
-                                                allow_null=True,
-                                                alias_target='src.users')
+    profile_picture = ThumbnailerJSONSerializer(required=False, allow_null=True, alias_target='src.users')
 
     class Meta:
         model = User
@@ -17,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
             'last_name',
             'profile_picture',
         )
-        read_only_fields = ('username', )
+        read_only_fields = ('username',)
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -45,5 +44,5 @@ class CreateUserSerializer(serializers.ModelSerializer):
             'tokens',
             'profile_picture',
         )
-        read_only_fields = ('tokens', )
+        read_only_fields = ('tokens',)
         extra_kwargs = {'password': {'write_only': True}}

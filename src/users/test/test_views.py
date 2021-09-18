@@ -14,6 +14,7 @@ class TestUserListTestCase(APITestCase):
     """
     Tests /users list operations.
     """
+
     def setUp(self):
         self.url = reverse('user-list')
         self.user_data = {'username': 'test', 'password': 'test'}
@@ -35,13 +36,13 @@ class TestUserDetailTestCase(APITestCase):
     """
     Tests /users detail operations.
     """
+
     def setUp(self):
         self.user = UserFactory()
         tokens = self.user.get_tokens()
         access_token = tokens['access']
         self.url = reverse('user-detail', kwargs={'pk': self.user.pk})
-        self.client.credentials(
-            HTTP_AUTHORIZATION=f'Bearer {access_token}')
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')
 
     def test_get_request_returns_a_given_user(self):
         response = self.client.get(self.url)

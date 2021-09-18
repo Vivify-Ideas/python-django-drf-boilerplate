@@ -33,4 +33,3 @@ else
 	echo "Branch ${BRANCH} is not deployable"
 	exit 1
 fi
-

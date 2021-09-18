@@ -21,4 +21,3 @@ COPY ./requirements/ ./requirements
 RUN pip install -r ./requirements/${REQUIREMENTS_FILE}
 
 COPY . ./
-

@@ -9,20 +9,14 @@ from src.users.permissions import IsUserOrReadOnly
 from src.users.serializers import CreateUserSerializer, UserSerializer
 
 
-class UserViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
-                  mixins.CreateModelMixin, viewsets.GenericViewSet):
+class UserViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
     """
     Creates, Updates and Retrieves - User Accounts
     """
+
     queryset = User.objects.all()
-    serializers = {
-        'default': UserSerializer,
-        'create': CreateUserSerializer
-    }
-    permissions = {
-        'default': (IsUserOrReadOnly,),
-        'create': (AllowAny,)
-    }
+    serializers = {'default': UserSerializer, 'create': CreateUserSerializer}
+    permissions = {'default': (IsUserOrReadOnly,), 'create': (AllowAny,)}
 
     def get_serializer_class(self):
         return self.serializers.get(self.action, self.serializers['default'])

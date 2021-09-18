@@ -9,6 +9,7 @@ class DisableSignals(object):
       with DisableSignals():
         ...
     """
+
     def __init__(self, disabled_signals=None):
         self.stashed_signals = defaultdict(list)
         self.disabled_signals = disabled_signals or [

@@ -27,7 +27,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'jet',
     'django.contrib.admin',
-
     # Third party apps
     'rest_framework',  # utilities for rest apis
     'rest_framework.authtoken',  # token authentication
@@ -42,19 +41,17 @@ INSTALLED_APPS = (
     'django_celery_beat',  # task scheduler
     'djmoney',  # money object
     'health_check',
-    'health_check.db',                          # stock Django health checkers
+    'health_check.db',  # stock Django health checkers
     'health_check.cache',
     'health_check.storage',
     'health_check.contrib.migrations',
-    'health_check.contrib.celery_ping',         # requires celery
-
+    'health_check.contrib.celery_ping',  # requires celery
     # Your apps
     'src.notifications',
     'src.users',
     'src.social',
     'src.files',
     'src.common',
-
     # Third party optional apps
     # app must be placed somewhere after all the apps that are going to be generating activities
     # 'actstream',                  # activity stream
@@ -191,12 +188,8 @@ LOGGING = {
             '()': 'django.utils.log.ServerFormatter',
             'format': '[%(server_time)s] %(message)s',
         },
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
+        'verbose': {'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'},
+        'simple': {'format': '%(levelname)s %(message)s'},
     },
     'filters': {
         'require_debug_true': {
@@ -209,15 +202,8 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'django.server',
         },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple'
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
+        'console': {'level': 'DEBUG', 'class': 'logging.StreamHandler', 'formatter': 'simple'},
+        'mail_admins': {'level': 'ERROR', 'class': 'django.utils.log.AdminEmailHandler'},
     },
     'loggers': {
         'django': {
@@ -234,11 +220,8 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'INFO'
-        },
-    }
+        'django.db.backends': {'handlers': ['console'], 'level': 'INFO'},
+    },
 }
 
 # Custom user app
@@ -299,18 +282,9 @@ SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/complete/twitter/'
 
 THUMBNAIL_ALIASES = {
     'src.users': {
-        'thumbnail': {
-            'size': (100, 100),
-            'crop': True
-        },
-        'medium_square_crop': {
-            'size': (400, 400),
-            'crop': True
-        },
-        'small_square_crop': {
-            'size': (50, 50),
-            'crop': True
-        }
+        'thumbnail': {'size': (100, 100), 'crop': True},
+        'medium_square_crop': {'size': (400, 400), 'crop': True},
+        'small_square_crop': {'size': (50, 50), 'crop': True},
     },
 }
 
@@ -318,13 +292,10 @@ THUMBNAIL_ALIASES = {
 
 # Django Rest Framework
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS':
-    'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend', 'rest_framework.filters.OrderingFilter'],
-    'PAGE_SIZE':
-    int(os.getenv('DJANGO_PAGINATION_LIMIT', 18)),
-    'DATETIME_FORMAT':
-    '%Y-%m-%dT%H:%M:%S.%fZ',
+    'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 18)),
+    'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S.%fZ',
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
@@ -341,13 +312,8 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.UserRateThrottle',
         'rest_framework.throttling.ScopedRateThrottle',
     ],
-    'DEFAULT_THROTTLE_RATES': {
-        'anon': '100/second',
-        'user': '1000/second',
-        'subscribe': '60/minute'
-    },
-    'TEST_REQUEST_DEFAULT_FORMAT':
-    'json'
+    'DEFAULT_THROTTLE_RATES': {'anon': '100/second', 'user': '1000/second', 'subscribe': '60/minute'},
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
 
 # JWT configuration
@@ -357,23 +323,18 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,
-
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'VERIFYING_KEY': None,
     'AUDIENCE': None,
     'ISSUER': None,
-
     'AUTH_HEADER_TYPES': ('Bearer',),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
-
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
-
     'JTI_CLAIM': 'jti',
-
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
