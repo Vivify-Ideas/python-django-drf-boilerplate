@@ -9,7 +9,7 @@ celery==4.4.7
 
 # For the persistence stores
 psycopg2==2.8.6
-redis==3.5.3
+redis==4.4.4
 
 # Model Tools
 django-model-utils==4.1.1
