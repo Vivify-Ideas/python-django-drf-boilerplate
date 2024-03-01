@@ -88,6 +88,21 @@ To run all tests with code-coverate report, simple run:
 ```bash
 ./manage.py test
 ```
+### Prajot's wayout
+1. install Python 3.8.5
+2. install postgress
+3. Follow Below steps
+```bash
+python -m venv env && source env/scripts/activate             # activate venv
+cp .env.dist .env                                             # create .env file and fill-in DB info
+pip install -r requirements/dev.txt                           # install py requirements
+./manage.py migrate                                           # run migrations
+./manage.py collectstatic --noinput                           # collect static files
+redis-server                                                  # run redis locally for celery
+celery -A src.config worker --beat --loglevel=debug
+  --pidfile="./celerybeat.pid"
+  --scheduler django_celery_beat.schedulers:DatabaseScheduler # run celery beat and worker
+```
 
 
 You're now ready to ROCK! ✨ 💅 🛳

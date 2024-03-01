@@ -16,7 +16,7 @@ def complete_twitter_login(request, *args, **kwargs):
     tokens = request.user.get_tokens()
     access_token = tokens['access']
     refresh_token = tokens['refresh']
-    return redirect(settings.TWITTER_FE_URL + f'?access_token={access_token}&refresh_token={refresh_token}')
+    return redirect(settings.TWITTER_FE_URL + f'?access_token={access_token}&refresh_token={refresh_token}') #--It constructs a redirect URL to a frontend page (TWITTER_FE_URL) and appends the access and refresh tokens as query parameters.
 
 
 @api_view(http_method_names=['POST'])

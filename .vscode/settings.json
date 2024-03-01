@@ -13,5 +13,7 @@
     "**/*.pyc": true
   },
   "editor.rulers": [130],
-  "prettier.printWidth": 130
+  "prettier.printWidth": 130,
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.autoImportCompletions": true
 }

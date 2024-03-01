@@ -1,10 +1,10 @@
 from django.conf import settings
 from django.urls import path, re_path, include, reverse_lazy
 from django.conf.urls.static import static
-from django.conf.urls import url
+from django.conf.urls import url #---depreicated
 from django.contrib import admin
 from django.views.generic.base import RedirectView
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import DefaultRouter #-- used for set route for other urls.py files
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -16,6 +16,7 @@ from src.social.views import exchange_token, complete_twitter_login
 from src.files.urls import files_router
 from src.users.urls import users_router
 
+
 schema_view = get_schema_view(
     openapi.Info(title="Pastebin API", default_version='v1'),
     public=True,
@@ -26,6 +27,8 @@ router = DefaultRouter()
 router.registry.extend(users_router.registry)
 router.registry.extend(files_router.registry)
 
+
+
 urlpatterns = [
     # admin panel
     path('admin/', admin.site.urls),
@@ -34,6 +37,7 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     # api
     path('api/v1/', include(router.urls)),
+    
     url(r'^api/v1/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
     # auth
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),

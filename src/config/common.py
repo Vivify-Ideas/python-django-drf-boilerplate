@@ -1,11 +1,12 @@
 import os
 import sentry_sdk
-import sys
+import sys #--The sys module in Python provides access to some variables and functions related to the Python interpreter and its environment
 import dotenv
 
 from datetime import timedelta
 from sentry_sdk.integrations.django import DjangoIntegration
 from os.path import join
+
 
 TESTING = sys.argv[1:2] == ['test']
 
@@ -52,6 +53,7 @@ INSTALLED_APPS = (
     'src.social',
     'src.files',
     'src.common',
+
     # Third party optional apps
     # app must be placed somewhere after all the apps that are going to be generating activities
     # 'actstream',                  # activity stream
@@ -103,11 +105,11 @@ CELERY_TIMEZONE = 'UTC'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST', 'db'),
-        'PORT': os.getenv('DB_PORT'),
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST':  'localhost',
+        'PORT': '5432',
     }
 }
 

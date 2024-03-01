@@ -1,5 +1,5 @@
-import logging
-from actstream import action
+import logging #-- Python's built-in logging module for logging messages
+from actstream import action #--used for tracking user actions within the application.
 
 from src.notifications.channels.email import EmailChannel
 
@@ -42,3 +42,4 @@ def notify(verb, **kwargs):
 def send_action(sender, verb, action_object, target, **kwargs):
     action.send(sender=sender, verb=verb, action_object=action_object, target=target)
     notify(verb, **kwargs)
+#--The action.send method is used to record the action in the action stream. This is typically used for activity tracking and generating feeds.
